@@ -62,10 +62,10 @@ $$ /  $$ |\$$$$$$ / \$$$$$$  |\$$$$$$  | \$$$$  |\$$$$$$$\
 """
 print(f'{header_text}')
 tags_number = Prompt.ask("[bold blue_violet]👥 Tags per post[/bold blue_violet]",
-                     default="15")
+                     default='15')
 
 tokens_conc = Prompt.ask("[bold blue_violet]⚙️ Tokens at same time[/bold blue_violet]",
-                     default="1")
+                     default='1')
 
 max_qs = Prompt.ask("[bold blue_violet]🔥 Max Quotes[/bold blue_violet]",
                      default="300")
@@ -228,7 +228,7 @@ async def engage(token, post_id, users_queue):
                         users_queue.put(users_chunk)
                         return False
 
-            tasks = [make_request() for _ in range(max_qs)]  
+            tasks = [make_request() for _ in range(int(max_qs))]  
             await asyncio.gather(*tasks)
             if counter > 1:
                 global_counter += counter
@@ -250,7 +250,7 @@ async def engage(token, post_id, users_queue):
 async def run_all(tokens, post_id):
     users_queue, total_users, chunk_count = read_users_and_enqueue('users.txt')
     print(f"Total Sets: {chunk_count}, Total Users: {total_users}")
-    semaphore = asyncio.Semaphore(tokens_conc)  
+    semaphore = asyncio.Semaphore(int(tokens_conc))  
 
     async def main_worker(token):
         async with semaphore:
