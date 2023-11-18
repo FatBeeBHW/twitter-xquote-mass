@@ -68,7 +68,7 @@ tokens_conc = Prompt.ask("[bold blue_violet]⚙️ Tokens at same time[/bold blu
                      default='1')
 
 max_qs = Prompt.ask("[bold blue_violet]🔥 Max Quotes[/bold blue_violet]",
-                     default="300")
+                     default='350')
 
 post_id = Prompt.ask("[bold blue_violet]🎯 Post ID[/bold blue_violet]",
                      default="1700259403411431907")
@@ -85,7 +85,7 @@ status_text = f"🎯 [bold green_yellow]Target:[white] {post_id}"
 print(header_text)
 print("[bold green_yellow]🚀 Let's go![/bold green_yellow]")
 print(status_text)
-def read_users_and_enqueue(file_path, blacklist_path="data/blacklist.txt", chunk_size=tags_number):
+def read_users_and_enqueue(file_path, blacklist_path="data/blacklist.txt", chunk_size=int(tags_number)):
     users_queue = Queue()
     total_users = 0
     chunk_count = 0
@@ -233,7 +233,7 @@ async def engage(token, post_id, users_queue):
             if counter > 1:
                 global_counter += counter
                 formatted_global_counter = "{:,}".format(global_counter)
-                formatted_total = "{:,}".format(global_counter * 16)
+                formatted_total = "{:,}".format(global_counter * int(tags_number))
                 print(f"[✅] [green]([white]{token}[green]) [white]quoted [green]{counter}[white] times. | Quotes: [green]{formatted_global_counter} [white]Tags: [green]{formatted_total}")
                 await write_token_to_file(token, "used")
                 await save_to_file()
