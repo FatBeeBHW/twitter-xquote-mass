@@ -2,6 +2,7 @@
 
 ## 250~ Quotes per account, Milions of quotes in minutes.
 
+- Why Opensource? Ask the peeps who are willing to sell this for $500-1000 to 1000 Buyers.
 - https://streamable.com/3msq9i
 - Load tokens (work with fresh, you can buy from https://t.me/medaille )
 - Load UserIDs
